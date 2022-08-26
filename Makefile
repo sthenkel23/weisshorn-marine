@@ -9,4 +9,6 @@ source-virtual:
 	source ~/.env/bin/activate
 
 run-app:
-	streamlit run src/marine/app/app.py
+	streamlit run src/marine/app.py
+
+all: install create-virtual source-virtual run-app
