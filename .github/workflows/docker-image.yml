@@ -1,4 +1,4 @@
-name: Docker Image CI & Deploy To Cloud
+name: Test, Docker Image CI & Deploy To Cloud
 
 on:
   push:
@@ -7,11 +7,12 @@ on:
     branches: [ "dev" ]
 
 jobs:
-
+  env: 
+      HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }} 
+      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
   build:
     runs-on: ubuntu-latest
-    env: 
-      HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+    
     steps:
     - uses: actions/checkout@v3
     
@@ -19,17 +20,17 @@ jobs:
       run: docker build . -f Dockerfile -t registry.heroku.com/$HEROKU_APP_NAME/web
       
     - name: Login to Heroku Container registry
-      env: 
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       run: heroku container:login
       
     - name: Build and push
-      env: 
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       # run: heroku container:push -a $HEROKU_APP_NAME web
       run: docker push registry.heroku.com/$HEROKU_APP_NAME/web:latest  
+      
+  deploy:
+    runs-on: ubuntu-latest
+  
+    steps:
+    - uses: actions/checkout@v3
     - name: Release
-      env: 
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       run: heroku container:release -a $HEROKU_APP_NAME web
       
