@@ -1,4 +1,3 @@
-import pytest
 
 def random_fruit():
   return "apple"
