@@ -1,4 +1,4 @@
-ylint==2.13.8
+pylint==2.13.8
 black
 pytest
 pytest-cov
