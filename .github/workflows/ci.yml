@@ -9,7 +9,7 @@ on:
 env: 
   HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }} 
   HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-  LIB_NAME: marine
+  LIB_NAME: ${{ secrets.LIB_NAME }}
 
 jobs:
   test:
