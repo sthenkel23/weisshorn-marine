@@ -34,7 +34,7 @@ jobs:
         make lint
     - name: Testing python with pytest
       run: |
-        make testing
+        make testing LIB_NAME=$LIB_NAME
   
   build:
     needs: test
