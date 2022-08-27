@@ -2,7 +2,8 @@
   "environments": {
     "test": {
       "scripts": {
-        "test-setup": "pip3 install nose"
+        "test-setup": "pip3 install nose",
+        "test": "python -m pytest -vv --cov=src/mylib tests/*.py"
       }
     }
   }
