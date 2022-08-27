@@ -1,6 +1,6 @@
 FROM python:3.9-slim
 # EXPOSE 8501
-RUN adduser -D myuser
+RUN adduser myuser
 USER myuser
 
 ARG var
