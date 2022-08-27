@@ -2,6 +2,7 @@
   "environments": {
     "test": {
       "scripts": {
+        "test-setup": "pip3 install nose"
         "test": "nose test"
       }
     }
