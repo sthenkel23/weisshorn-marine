@@ -3,7 +3,8 @@ LIB=marine
 
 install:
 	pip install --upgrade pip && \
-		pip install -r requirements.txt
+		pip install -r requirements.txt && \
+		pip install -r requirements-test.txt
 lint:
 	pylint --disable=C $$(git ls-files '*.py')
 
