@@ -1,4 +1,4 @@
-LIB=marine
+LIB=${{ secrets.HEROKU_APP_NAME }}
 
 
 install:
