@@ -3,7 +3,7 @@
     "test": {
       "scripts": {
         "test-setup": "pip3 install nose",
-        "test": "nose test"
+        "test": "nosetests"
       }
     }
   }
