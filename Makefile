@@ -1,4 +1,4 @@
-LIB_NAME=${{ secrets.LIB_NAME }}
+LIB_NAME=$$(secrets.LIB_NAME)
 
 
 install:
