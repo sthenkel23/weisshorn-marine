@@ -1,1 +1,10 @@
+{
+  "environments": {
+    "test": {
+      "scripts": {
+        "test": "nose test"
+      }
+    }
+  }
+}
 
