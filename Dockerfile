@@ -3,7 +3,7 @@ FROM python:3.9-slim
 RUN adduser myuser
 USER myuser
 
-ARG var
+E ARG var
 WORKDIR /app
 COPY --chown=myuser:myuser requirements.txt ./requirements.txt
 RUN pip install --upgrade pip && \
