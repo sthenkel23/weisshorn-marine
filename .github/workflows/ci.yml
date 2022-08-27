@@ -36,6 +36,7 @@ jobs:
         make testing
   
   build:
+    needs: test
     runs-on: ubuntu-latest
     
     steps:
@@ -52,7 +53,7 @@ jobs:
       run: docker push registry.heroku.com/$HEROKU_APP_NAME/web:latest  
       
   deploy:
-    needs: build
+    needs: ["test", "build"]
     runs-on: ubuntu-latest
     
     steps:
