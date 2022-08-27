@@ -1,0 +1,6 @@
+ylint==2.13.8
+black
+pytest
+pytest-cov
+pytest-xdist==2.5.0
+pytest-xdist[psutil]
