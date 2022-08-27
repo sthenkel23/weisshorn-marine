@@ -1,4 +1,4 @@
-LIB=${{ secrets.HEROKU_APP_NAME }}
+LIB_NAME=${{ secrets.LIB_NAME }}
 
 
 install:
@@ -12,7 +12,7 @@ format:
 	black $$(git ls-files '*.py')
 
 testing:
-	python -m pytest -vv --cov=src/$(LIB) tests/*.py
+	python -m pytest -vv --cov=src/$(LIB_NAME) tests/*.py
 
 profile-test:
 	python -m pytest -vv --durations=1 --durations-min=1.0 --cov=src/mylib tests/*.py
