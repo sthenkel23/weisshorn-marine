@@ -24,8 +24,8 @@ jobs:
     - name: Build and push
       env: 
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku container:push -a weisshorn-marine web
+      run: heroku container:push -a warm-tundra-71654 web
     - name: Release
       env: 
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku container:release -a weisshorn-marine web
+      run: heroku container:release -a warm-tundra-71654 web
