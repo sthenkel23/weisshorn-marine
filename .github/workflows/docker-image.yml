@@ -7,12 +7,12 @@ on:
     branches: [ "dev" ]
 
 jobs:
-  env: 
-      HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }} 
-      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+  
   build:
     runs-on: ubuntu-latest
-    
+    env: 
+      HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }} 
+      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
     steps:
     - uses: actions/checkout@v3
     
@@ -28,7 +28,9 @@ jobs:
       
   deploy:
     runs-on: ubuntu-latest
-  
+    env: 
+      HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }} 
+      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
     steps:
     - uses: actions/checkout@v3
     - name: Release
