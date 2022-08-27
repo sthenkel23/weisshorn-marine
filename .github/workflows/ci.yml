@@ -11,6 +11,29 @@ env:
   HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9", "3.10"]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        make install
+    - name: Format the code with black
+      run: |
+        make format
+    - name: Analysing the code with pylint
+      run: |
+        make lint
+    - name: Testing python with pytest
+      run: |
+        make testing
   
   build:
     runs-on: ubuntu-latest
