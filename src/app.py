@@ -5,8 +5,7 @@ import streamlit as st
 
 import time
 
-""" Fetch data
-"""
+
 from marine.data.api import fetch_data
 
 # Add title to the page.
