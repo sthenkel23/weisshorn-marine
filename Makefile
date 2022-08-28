@@ -29,8 +29,6 @@ source-virtual:
 build-pypi:
 	pip install --upgrade pip
 	pip install build
-	$(shell cd src; pwd)
-	python -m build
-	$(shell cd -)
+	python3 -m build src
 run-app:
 	streamlit run src/app.py

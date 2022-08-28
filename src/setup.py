@@ -2,7 +2,7 @@ import setuptools
 import os
 
 setuptools.setup(
-    name=os.environ["LIB_NAME"],
+    name="marine",
     version="0.0.0.1",
     author="<author>",
     author_email="coder.henkelmann@gmail.com",
