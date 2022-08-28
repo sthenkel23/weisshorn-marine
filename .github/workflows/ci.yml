@@ -42,9 +42,11 @@ jobs:
     
     steps:
     - uses: actions/checkout@v3
-    
+    - name: Build the pypi python image
+      run: make pypi-build
+
     - name: Build the Docker image
-      run: docker build . -f Dockerfile --no-cache --build-arg lib=$LIB_NAME -t registry.heroku.com/$HEROKU_APP_NAME/web
+      run: docker build . -f Dockerfile -t registry.heroku.com/$HEROKU_APP_NAME/web
       
     - name: Login to Heroku Container registry
       run: heroku container:login

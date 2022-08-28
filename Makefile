@@ -26,5 +26,11 @@ create-virtual:
 source-virtual:
 	source ~/.env/bin/activate
 
+build-pypi:
+	pip install --upgrade pip
+	pip install build
+	$(shell cd src; pwd)
+	python -m build
+	$(shell cd -)
 run-app:
-	streamlit run src/marine/app.py
+	streamlit run src/app.py

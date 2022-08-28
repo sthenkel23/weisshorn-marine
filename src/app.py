@@ -3,6 +3,12 @@
 from summa import summarizer
 import streamlit as st
 
+import time
+
+""" Fetch data
+"""
+from marine.data.api import fetch_data
+
 # Add title to the page.
 st.title("Text summarization")
 
@@ -22,3 +28,13 @@ summarized_text = summarizer.summarize(
 # Print out the results.
 for sentence, score in summarized_text:
     st.write(sentence)
+
+
+# creating a single-element container.
+placeholder = st.empty()
+
+with placeholder.container():
+    st.markdown("### Detailed Data View")
+    df = fetch_data()
+    st.dataframe(df)
+    time.sleep(1)
