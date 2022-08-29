@@ -1,5 +1,5 @@
 from google.cloud import firestore
-import os
+
 # Authenticate to Firestore with the JSON account key.
 db = firestore.Client.from_service_account_json("./g-cl.json")
 
