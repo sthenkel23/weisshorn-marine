@@ -48,7 +48,7 @@ jobs:
 
     - name: Build the Docker image
       env: 
-      FIREBASE_API_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        FIREBASE_API_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       run: echo $FIREBASE_API_KEY > g-cl.json
       run: docker build . -f Dockerfile -t registry.heroku.com/$HEROKU_APP_NAME/web
       
