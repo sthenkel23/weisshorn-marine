@@ -1,6 +1,6 @@
+ARG KEY
 FROM python:3.9-slim
 # EXPOSE 8501
-ARG KEY
 WORKDIR /app
 RUN pip install --upgrade pip
 
