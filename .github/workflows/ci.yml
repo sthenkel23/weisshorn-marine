@@ -7,9 +7,11 @@ on:
     branches: [ "dev", "main" ]
 
 env: 
+  FIREBASE_API_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
   HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }} 
   HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
   LIB_NAME: ${{ secrets.LIB_NAME }}
+  
 
 jobs:
   test:
