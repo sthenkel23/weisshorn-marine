@@ -1,7 +1,7 @@
 from google.cloud import firestore
 
 # Authenticate to Firestore with the JSON account key.
-db = firestore.Client.from_service_account_json("./g-cl.json")
+db = firestore.Client.from_service_account_json("./gcl.json")
 
 # Create a reference to the Google post.
 doc_ref = db.collection("marine-alerts").document("alerts")
