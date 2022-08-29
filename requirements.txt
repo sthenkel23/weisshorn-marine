@@ -1,4 +1,9 @@
+# Required for App
 streamlit==1.12.2
 summa
-pandas
+# Required for package management
 setuptools
+
+# Required for db and data massaging
+google-cloud-firestore
+pandas

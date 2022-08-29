@@ -5,8 +5,9 @@ import streamlit as st
 
 import time
 
-
+from db.firestore import doc
 from marine.data.api import fetch_data
+
 
 # Add title to the page.
 st.title("Text summarization")
@@ -27,6 +28,11 @@ summarized_text = summarizer.summarize(
 # Print out the results.
 for sentence, score in summarized_text:
     st.write(sentence)
+
+
+# Let's see what we got!
+st.write("The id is: ", doc.id)
+st.write("The contents are: ", doc.to_dict())
 
 
 # creating a single-element container.
