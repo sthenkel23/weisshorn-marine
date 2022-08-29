@@ -4,8 +4,9 @@ from summa import summarizer
 import streamlit as st
 
 import time
+from datetime import datetime
 
-from db.firestore import doc
+from db.firestore import doc, doc_ref, collection
 from marine.data.api import fetch_data
 
 
@@ -30,11 +31,36 @@ for sentence, score in summarized_text:
     st.write(sentence)
 
 
+st.title("Feed firebase")
 # Let's see what we got!
-st.write("The id is: ", doc.id)
-st.write("The contents are: ", doc.to_dict())
+for doc in collection.stream():
+    st.write("The id is: ", doc.id)
+    st.write("The contents are: ", doc.to_dict())
+# Streamlit widgets to let a user create a new post
+alert = st.text_input("Post Alert Type")
+ids = st.text_input("Post ID")
+description = st.text_input("Post Alert Description")
+submit = st.button("Submit new alert")
+
+if alert and description and ids and submit:
+    doc_ref = collection.document(alert)
+    doc_ref.set(
+        {"description": description, "id": ids, "timestamp": datetime.now(tz=None)}
+    )
 
 
+for doc in collection.stream():
+    post = doc.to_dict()
+    ids = post["id"]
+    description = post["description"]
+    timestamp = post["timestamp"]
+
+    st.subheader(f"Alert: {doc.id}")
+    st.write(f"Alert Description: {description}")
+    st.write(f"Timestamp: {timestamp}")
+    st.write(f"ID: {ids}")
+
+st.title("Consume from static file")
 # creating a single-element container.
 placeholder = st.empty()
 

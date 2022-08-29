@@ -4,7 +4,8 @@ from google.cloud import firestore
 db = firestore.Client.from_service_account_json("./gcl.json")
 
 # Create a reference to the Google post.
-doc_ref = db.collection("marine-alerts").document("alerts")
+collection = db.collection("marine-alerts")
+doc_ref = collection.document("alerts")
 
 # Then get the data at that reference.
 doc = doc_ref.get()
