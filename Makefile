@@ -2,7 +2,9 @@ LIB=marine
 
 install:
 	pip install --upgrade pip && \
-		pip install -r requirements.txt
+		pip install -r requirements.txt && \
+		pip install -r requirements-test.txt
+
 lint:
 	pylint --disable=C $$(git ls-files '*.py')
 
@@ -10,7 +12,7 @@ format:
 	black $$(git ls-files '*.py')
 
 testing:
-	python -m pytest -vv --cov=src/$(LIB) tests/*.py
+	python -m pytest -vv --cov=src/$(LIB_NAME) tests/*.py
 
 profile-test:
 	python -m pytest -vv --durations=1 --durations-min=1.0 --cov=src/mylib tests/*.py
@@ -27,5 +29,10 @@ create-virtual:
 source-virtual:
 	source ~/.env/bin/activate
 
+build-pypi:
+	pip install --upgrade pip
+	pip install build
+	python3 -m build src
 run-app:
-	streamlit run src/marine/app.py
+	streamlit run src/app.py
+

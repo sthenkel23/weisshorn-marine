@@ -2,8 +2,8 @@
   "environments": {
     "test": {
       "scripts": {
-        "test-setup": "pip3 install nose"
-        "test": "nose test"
+        "test-setup": "pip3 install pytest pytest-cov",
+        "test": "python -m pytest -vv --cov=src/marine tests/*.py"
       }
     }
   }
