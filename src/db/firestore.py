@@ -1,4 +1,3 @@
-import streamlit as st
 from google.cloud import firestore
 
 # Authenticate to Firestore with the JSON account key.
