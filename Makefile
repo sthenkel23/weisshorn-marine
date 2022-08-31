@@ -13,6 +13,9 @@ lint:
 format:
 	black $$(git ls-files '*.py')
 
+sort:
+	isort $$(git ls-files '*.py')
+
 testing:
 	python -m pytest -vv --cov=src/$(IMAGE) tests/*.py
 
@@ -22,7 +25,7 @@ profile-test:
 parallel-test:
 	python -m pytest -vv -n auto --dist loadgroup tests/*.py
 
-test: install format lint testing
+test: install sort format lint testing
 
 
 create-virtual:

@@ -1,16 +1,15 @@
 #!/usr/bin/env python
 
-from summa import summarizer
-import streamlit as st
-
-import pandas as pd
-import numpy as np
 import time
 from datetime import datetime
 
-from db.firestore import doc, doc_ref, collection
-from marine.data.api import fetch_data_cb_api
+import numpy as np
+import pandas as pd
+import streamlit as st
+from summa import summarizer
 
+from db.firestore import collection, doc, doc_ref
+from marine.data.api import fetch_data_cb_api
 
 # Add title to the page.
 st.title("Text summarization")

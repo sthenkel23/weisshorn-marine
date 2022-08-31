@@ -1,6 +1,6 @@
 import pandas as pd
-import streamlit as st
 import requests
+import streamlit as st
 
 DATASET_URL = "https://raw.githubusercontent.com/Lexie88rus/bank-marketing-analysis/master/bank.csv"
 
