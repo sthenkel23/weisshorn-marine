@@ -7,3 +7,4 @@ setuptools
 # Required for db and data massaging
 google-cloud-firestore
 pandas
+requests

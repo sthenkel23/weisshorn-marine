@@ -4,11 +4,12 @@ from summa import summarizer
 import streamlit as st
 
 import pandas as pd
+import numpy as np
 import time
 from datetime import datetime
 
 from db.firestore import doc, doc_ref, collection
-from marine.data.api import fetch_data
+from marine.data.api import fetch_data, fetch_data_cb_api
 
 
 # Add title to the page.
@@ -63,12 +64,63 @@ st.markdown("### Detailed Data View (firebase to pandas)")
 st.dataframe(pd.DataFrame(d))
 
 
+st.title("Consume from continueously updating file")
+
+placeholder = st.empty()
+df = pd.DataFrame({})
+val = 0.0
+while True:
+    with placeholder.container():
+        st.markdown("### Detailed Data View")
+        df, val = fetch_data_cb_api(df, val)
+        avg_price = np.mean(pd.to_numeric(df["amount"]))
+        min_ts = np.min(df["timestamp"].astype(str))
+        max_ts = np.max(df["timestamp"].astype(str))
+        # Add metric elements
+        kpi1, kpi2, kpi3 = st.columns(3)
+        kpi1.metric(
+            label="Mean Amount ⏳",
+            value=round(avg_price, 2),
+            delta=round(avg_price) - 10,
+        )
+        kpi2.metric(
+            label="Min timestamp",
+            value=min_ts,
+        )
+        kpi3.metric(
+            label="Max timestamp",
+            value=max_ts,
+        )
+        st.dataframe(df)
+        time.sleep(1)
+
+
 st.title("Consume from static file")
+
 # creating a single-element container.
 placeholder = st.empty()
 
 with placeholder.container():
     st.markdown("### Detailed Data View")
     df = fetch_data()
+    count_married = int(
+        df[(df["marital"] == "married")]["marital"].count()
+        + np.random.choice(range(1, 30))
+    )
+    df["age_new"] = df["age"] * np.random.choice(range(1, 5))
+    avg_age = np.mean(df["age_new"])
+
+    kpi1, kpi2 = st.columns(2)
+    kpi1.metric(
+        label="Age ⏳",
+        value=round(avg_age),
+        delta=round(avg_age) - 10,
+    )
+    kpi2.metric(
+        label="Married Count 💍",
+        value=int(count_married),
+        delta=-10 + count_married,
+    )
+
     st.dataframe(df)
     time.sleep(1)
