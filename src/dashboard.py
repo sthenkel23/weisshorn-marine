@@ -70,7 +70,7 @@ df = pd.DataFrame({})
 val = 0.0
 while True:
     with placeholder.container():
-        st.markdown("### Detailed Data View")
+        st.markdown("### Detailed Data View (updating)")
         df, val = fetch_data_cb_api(df, val)
         avg_price = np.mean(pd.to_numeric(df["amount"]))
         min_ts = np.min(df["timestamp"].astype(str))
