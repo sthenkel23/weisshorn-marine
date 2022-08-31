@@ -51,7 +51,7 @@ jobs:
       env: 
         FIREBASE_API_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       run: |
-          echo "IMAGE=registry.heroku.com/$HEROKU_APP_NAME/data" >> $HEROKU_APP_NAME 
+          echo "IMAGE=registry.heroku.com/$HEROKU_APP_NAME/data" >> $GITHUB_ENV 
           make docker IMAGE=$IMAGE VERSION=$VERSION
       
     - name: Login to Heroku Container registry
