@@ -49,19 +49,18 @@ jobs:
     - name: Set environment var needed for Docker
       run: |
           echo "IMAGE=registry.heroku.com/$HEROKU_APP_NAME" >> $GITHUB_ENV 
-          echo $IMAGE
     - name: Build the Docker image
       env: 
         FIREBASE_API_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       run:
-          make docker IMAGE=$IMAGE VERSION=$VERSION
+          make docker IMAGE=${{ env.IMAGE }} VERSION=$VERSION
       
     - name: Login to Heroku Container registry
       run: heroku container:login
       
     - name: Build and push
       # run: heroku container:push -a $HEROKU_APP_NAME web
-      run: docker push $IMAGE:$VERSION
+      run: docker push ${{ env.IMAGE }}:$VERSION
       
   deploy:
     needs: ["test", "build"]
