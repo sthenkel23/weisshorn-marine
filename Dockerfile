@@ -1,5 +1,8 @@
 FROM python:3.9-slim
 # EXPOSE 8501
+
+
+
 WORKDIR /app
 RUN pip install --upgrade pip
 
@@ -12,5 +15,5 @@ RUN pip3 install marine-0.0.0.1-py3-none-any.whl
 
 COPY gcl.json ./gcl.json
 
-COPY src/app.py .
-CMD streamlit run --server.port $PORT app.py
+COPY src/dashboard.py .
+CMD streamlit run --server.port $PORT dashboard.py

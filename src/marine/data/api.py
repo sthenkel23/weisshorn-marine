@@ -15,7 +15,7 @@ def fetch_data() -> pd.DataFrame:
     return pd.read_csv(DATASET_URL)
 
 
-def fetch_data_cb_api(df, prev_val) -> pd.DataFrame:
+def fetch_data_cb_api(df, prev_val):
     """
 
     :return: _description_
@@ -32,10 +32,4 @@ def fetch_data_cb_api(df, prev_val) -> pd.DataFrame:
         return df.append(r, ignore_index=True), r["amount"]
     if r["amount"] == df["amount"].iloc[-1]:
         return df, r["amount"]
-
-    # if r["amount"] != prev_val:
-    #     print("1. >", r["amount"], prev_val)
-    #     return df.append(r, ignore_index=True), r["amount"]
-    # elif r["amount"] == prev_val:
-    #     print("2. >", r["amount"], prev_val)
-    #     return df, r["amount"]
+    return None

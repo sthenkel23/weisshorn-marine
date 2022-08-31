@@ -40,6 +40,9 @@ jobs:
   build:
     needs: test
     runs-on: ubuntu-latest
+    env: 
+      IMAGE: registry.heroku.com/$HEROKU_APP_NAME/web
+      VERSION: latest
     
     steps:
     - uses: actions/checkout@v3
@@ -49,7 +52,7 @@ jobs:
     - name: Build the Docker image
       env: 
         FIREBASE_API_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-      run: echo $FIREBASE_API_KEY > gcl.json; echo "-------"; ls; echo "-------"; pwd; echo "-------"; ls $HOME;echo "-------"; docker build . -f Dockerfile -t registry.heroku.com/$HEROKU_APP_NAME/web
+      run: make docker IMAGE=$IMAGE VERSION=$VERSION
       
     - name: Login to Heroku Container registry
       run: heroku container:login

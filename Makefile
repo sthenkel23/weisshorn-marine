@@ -1,4 +1,6 @@
-LIB=marine
+IMAGE := marine
+VERSION := latest
+
 
 install:
 	pip install --upgrade pip && \
@@ -12,7 +14,7 @@ format:
 	black $$(git ls-files '*.py')
 
 testing:
-	python -m pytest -vv --cov=src/$(LIB_NAME) tests/*.py
+	python -m pytest -vv --cov=src/$(IMAGE) tests/*.py
 
 profile-test:
 	python -m pytest -vv --durations=1 --durations-min=1.0 --cov=src/mylib tests/*.py
@@ -33,6 +35,27 @@ build-pypi:
 	pip install --upgrade pip
 	pip install build
 	python3 -m build src
-run-app:
-	streamlit run src/app.py
 
+.PHONY: run-app
+run-app:
+	streamlit run src/dashboard.py
+
+# Docker
+.PHONY: docker
+docker:
+	@echo Building docker $(IMAGE):$(VERSION) ...
+	docker build \
+		-t $(IMAGE):$(VERSION) . \
+		-f ./Dockerfile
+
+.PHONY: clean_docker
+clean_docker:
+	@echo Removing docker $(IMAGE):$(VERSION) ...
+	docker rmi -f $(IMAGE):$(VERSION)
+
+.PHONY: clean_build
+clean_build:
+	rm -rf build/
+
+.PHONY: clean
+clean: clean_build clean_docker
