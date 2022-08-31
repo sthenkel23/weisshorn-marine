@@ -1,10 +1,12 @@
 FROM python:3.9-slim
 
-RUN useradd -d /home/docker_user -m -s /bin/bash docker_user
-USER docker_user
+# RUN useradd -d /home/docker_user -m -s /bin/bash docker_user
+# USER docker_user
 
-RUN mkdir -p /home/docker_user/workspace
-WORKDIR /home/docker_user/workspace
+# RUN mkdir -p /home/docker_user/workspace
+# WORKDIR /home/docker_user/workspace
+
+WORKDIR /app
 
 RUN pip install --upgrade pip
 

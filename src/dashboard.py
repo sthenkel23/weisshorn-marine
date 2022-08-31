@@ -91,4 +91,4 @@ while True:
             value=max_ts,
         )
         st.dataframe(df)
-        time.sleep(1)
+        time.sleep(10)
