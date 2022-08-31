@@ -6,8 +6,6 @@ USER docker_user
 RUN mkdir -p /home/docker_user/workspace
 WORKDIR /home/docker_user/workspace
 
-
-WORKDIR /app
 RUN pip install --upgrade pip
 
 COPY requirements.txt ./requirements.txt
