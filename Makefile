@@ -40,6 +40,20 @@ build-pypi:
 run-app:
 	streamlit run src/dashboard.py
 
+# Poetry
+.PHONY: download-poetry
+download-poetry:
+	curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python
+
+.PHONY: install
+install:
+	poetry env use python3.7
+	poetry lock -n
+	poetry install -n
+ifneq ($(NO_PRE_COMMIT), 1)
+	poetry run pre-commit install -t pre-commit -t pre-push
+endif
+
 # Docker
 .PHONY: docker
 docker:
