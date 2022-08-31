@@ -9,7 +9,7 @@ import time
 from datetime import datetime
 
 from db.firestore import doc, doc_ref, collection
-from marine.data.api import fetch_data, fetch_data_cb_api
+from marine.data.api import fetch_data_cb_api
 
 
 # Add title to the page.
@@ -68,7 +68,7 @@ st.title("Consume from continueously updating file")
 
 placeholder = st.empty()
 df = pd.DataFrame({})
-val = 0.
+val = 0.0
 while True:
     with placeholder.container():
         st.markdown("### Detailed Data View")
@@ -93,34 +93,3 @@ while True:
         )
         st.dataframe(df)
         time.sleep(1)
-
-
-st.title("Consume from static file")
-
-# creating a single-element container.
-placeholder = st.empty()
-
-with placeholder.container():
-    st.markdown("### Detailed Data View")
-    df = fetch_data()
-    count_married = int(
-        df[(df["marital"] == "married")]["marital"].count()
-        + np.random.choice(range(1, 30))
-    )
-    df["age_new"] = df["age"] * np.random.choice(range(1, 5))
-    avg_age = np.mean(df["age_new"])
-
-    kpi1, kpi2 = st.columns(2)
-    kpi1.metric(
-        label="Age ⏳",
-        value=round(avg_age),
-        delta=round(avg_age) - 10,
-    )
-    kpi2.metric(
-        label="Married Count 💍",
-        value=int(count_married),
-        delta=-10 + count_married,
-    )
-
-    st.dataframe(df)
-    time.sleep(1)

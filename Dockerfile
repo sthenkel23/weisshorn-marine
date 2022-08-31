@@ -1,6 +1,10 @@
 FROM python:3.9-slim
-# EXPOSE 8501
 
+RUN useradd -d /home/docker_user -m -s /bin/bash docker_user
+USER docker_user
+
+RUN mkdir -p /home/docker_user/workspace
+WORKDIR /home/docker_user/workspace
 
 
 WORKDIR /app
