@@ -45,8 +45,8 @@ run-app:
 download-poetry:
 	curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python
 
-.PHONY: install
-install:
+.PHONY: install-poetry
+install-poetry:
 	poetry env use python3.7
 	poetry lock -n
 	poetry install -n
