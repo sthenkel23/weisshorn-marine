@@ -10,6 +10,8 @@ env:
   HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }} 
   HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
   LIB_NAME: ${{ secrets.LIB_NAME }}
+  IMAGE: registry.heroku.com/$HEROKU_APP_NAME/web
+  VERSION: latest
   
 
 jobs:
@@ -40,9 +42,6 @@ jobs:
   build:
     needs: test
     runs-on: ubuntu-latest
-    env: 
-      IMAGE: registry.heroku.com/$HEROKU_APP_NAME/web
-      VERSION: latest
     
     steps:
     - uses: actions/checkout@v3
