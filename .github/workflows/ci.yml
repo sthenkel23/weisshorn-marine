@@ -46,12 +46,14 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the pypi python image
       run: make build-pypi
-
+    - name: Set environment var needed for Docker
+      run: |
+          echo "IMAGE=registry.heroku.com/$HEROKU_APP_NAME" >> $GITHUB_ENV 
+          echo $IMAGE
     - name: Build the Docker image
       env: 
         FIREBASE_API_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-      run: |
-          echo "IMAGE=registry.heroku.com/$HEROKU_APP_NAME/data" >> $GITHUB_ENV 
+      run:
           make docker IMAGE=$IMAGE VERSION=$VERSION
       
     - name: Login to Heroku Container registry
