@@ -1,7 +1,8 @@
 version: "2"
-image: $IMAGE:$VERSION
+
 
 services:    
     lit-app:
+        image: $IMAGE:$VERSION
         build:
             context: ./consumer
