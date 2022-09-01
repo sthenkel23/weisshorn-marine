@@ -36,7 +36,7 @@ jobs:
         make lint
     - name: Testing python with pytest
       run: |
-        make testing LIB_NAME=$LIB_NAME
+        make testing
   
   build:
     needs: test
@@ -56,7 +56,8 @@ jobs:
     - name: Build the Docker image
       
       run:
-          make docker IMAGE=${{ env.IMAGE }} VERSION=$VERSION
+          docker-compose up
+          # make docker IMAGE=${{ env.IMAGE }} VERSION=$VERSION
       
     - name: Login to Heroku Container registry
       run: heroku container:login

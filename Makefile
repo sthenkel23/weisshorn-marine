@@ -1,11 +1,11 @@
 IMAGE := marine
 VERSION := latest
-
+APP := consumer
 
 install:
 	pip install --upgrade pip && \
-		pip install -r requirements.txt && \
-		pip install -r requirements-test.txt
+		pip install -r ${APP}/requirements.txt && \
+		pip install -r ${APP}/requirements-test.txt
 
 lint:
 	pylint --disable=C $$(git ls-files '*.py')
@@ -17,10 +17,10 @@ sort:
 	isort $$(git ls-files '*.py')
 
 testing:
-	python -m pytest -vv --cov=src/$(IMAGE) tests/*.py
+	python -m pytest -vv --cov=consumer/src tests/*.py
 
 profile-test:
-	python -m pytest -vv --durations=1 --durations-min=1.0 --cov=src tests/*.py
+	python -m pytest -vv --durations=1 --durations-min=1.0 --cov=consumer/src tests/*.py
 
 parallel-test:
 	python -m pytest -vv -n auto --dist loadgroup tests/*.py
