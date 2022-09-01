@@ -21,4 +21,4 @@ RUN  . ./venv/bin/activate && pip install marine-0.0.0.1-py3-none-any.whl
 COPY gcl.json ./gcl.json
 
 COPY src/dashboard.py .
-CMD  . ./venv/bin/activate && streamlit run --server.port $PORT dashboard.py
+CMD  . ./venv/bin/activate && streamlit run dashboard.py

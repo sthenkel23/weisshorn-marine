@@ -6,3 +6,5 @@ services:
         image: $IMAGE:$VERSION
         build:
             context: ./consumer
+        ports:
+          - "8501:8501"
