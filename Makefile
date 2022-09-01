@@ -37,7 +37,7 @@ source-virtual:
 build-pypi:
 	pip install --upgrade pip
 	pip install build
-	python3 -m build src
+	python3 -m build consumer/src
 
 .PHONY: run-app
 run-app:
