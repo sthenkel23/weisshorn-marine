@@ -20,7 +20,7 @@ testing:
 	python -m pytest -vv --cov=src/$(IMAGE) tests/*.py
 
 profile-test:
-	python -m pytest -vv --durations=1 --durations-min=1.0 --cov=src/mylib tests/*.py
+	python -m pytest -vv --durations=1 --durations-min=1.0 --cov=src tests/*.py
 
 parallel-test:
 	python -m pytest -vv -n auto --dist loadgroup tests/*.py
@@ -41,7 +41,7 @@ build-pypi:
 
 .PHONY: run-app
 run-app:
-	streamlit run src/dashboard.py
+	streamlit run consumer/src/dashboard.py
 
 # Poetry
 .PHONY: download-poetry

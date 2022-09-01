@@ -1,0 +1,8 @@
+version: "2"
+
+services:    
+    lit-app:
+        build:
+            context: ./consumer
+        ports:
+            - 8501:8501
