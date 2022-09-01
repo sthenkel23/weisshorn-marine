@@ -55,7 +55,9 @@ jobs:
           
     - name: Build the Docker image
       
-      run:
+      run: |
+          export IMAGE=${{ env.IMAGE }}
+          export VERSION=$VERSION
           docker-compose up
           # make docker IMAGE=${{ env.IMAGE }} VERSION=$VERSION
       

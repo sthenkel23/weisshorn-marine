@@ -1,8 +1,7 @@
 version: "2"
+image: $IMAGE:$VERSION
 
 services:    
     lit-app:
         build:
             context: ./consumer
-        ports:
-            - 8501:8501
