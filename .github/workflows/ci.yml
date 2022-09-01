@@ -58,7 +58,7 @@ jobs:
       run: |
           export IMAGE=${{ env.IMAGE }}
           export VERSION=$VERSION
-          docker-compose up
+          docker-compose up --build
           # make docker IMAGE=${{ env.IMAGE }} VERSION=$VERSION
       
     - name: Login to Heroku Container registry
