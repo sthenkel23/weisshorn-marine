@@ -51,7 +51,7 @@ jobs:
          FIREBASE_API_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       run: |
           echo "IMAGE=registry.heroku.com/$HEROKU_APP_NAME/web" >> $GITHUB_ENV 
-          echo $FIREBASE_API_KEY > gcl.json
+          echo $FIREBASE_API_KEY > consumer/gcl.json
           
     - name: Build the Docker image
       
