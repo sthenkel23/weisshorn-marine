@@ -1,12 +1,20 @@
 version: "2"
 
-
 services:    
     lit-app:
         image: $IMAGE:$VERSION
         environment: 
                 - PORT=8000
         build:
-            context: ./consumer
+            context: .
+            dockerfile: ./consumer/Dockerfile
         ports:
           - "8501:8501"
+    fastapi-app:
+        image: $IMAGE:$VERSION
+        environment: 
+                - PORT=8000
+        build:
+            context: .
+            dockerfile: ./producer/Dockerfile
+        
