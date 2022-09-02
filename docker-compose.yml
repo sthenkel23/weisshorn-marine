@@ -8,12 +8,11 @@ services:
         build:
             context: .
             dockerfile: ./consumer/Dockerfile
-        ports:
-          - "8501:8501"
+          
     fastapi-app:
         image: $IMAGE:$VERSION
         environment: 
-                - PORT=8000
+                - PORT=8005
         build:
             context: .
             dockerfile: ./producer/Dockerfile
