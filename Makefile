@@ -4,7 +4,8 @@ APP := consumer
 
 install:
 	pip install --upgrade pip && \
-		pip install -r ${APP}/requirements.txt && \
+		pip install -r consumer/requirements.txt && \
+		pip install -r producer/requirements.txt && \
 		pip install -r requirements-test.txt
 
 lint:
