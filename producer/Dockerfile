@@ -18,5 +18,5 @@ COPY dist/marine-0.0.0.1-py3-none-any.whl ./marine-0.0.0.1-py3-none-any.whl
 RUN  . ./venv/bin/activate && pip install marine-0.0.0.1-py3-none-any.whl
 
 COPY producer/src/main.py .
-CMD  . ./venv/bin/activate && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+CMD  . ./venv/bin/activate && uvicorn main:app --host 0.0.0.0 --port $PORT
 # CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
