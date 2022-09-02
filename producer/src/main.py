@@ -1,8 +1,9 @@
-import uvicorn
+import pandas as pd
 from fastapi import FastAPI
 
-from data.api import fetch_data_cb_api
-import pandas as pd
+# import uvicorn
+from producer.src.data.api import fetch_data_cb_api
+
 app = FastAPI()
 
 
@@ -16,7 +17,7 @@ def index():
 
 @app.get("/apiv1/{name}")
 def api1(name: str):
-    
+
     return {"message": f"Hello! @{name}"}
 
 
@@ -27,7 +28,9 @@ def api2(name: str):
         df = fetch_data_cb_api(df)
         amount = df["amount"].iloc[-1]
         l = len(df)
-        return {"message": f"Hello! @{name} with {amount} in df of size {l} see \n {df}"}
+        return {
+            "message": f"Hello! @{name} with {amount} in df of size {l} see \n {df}"
+        }
 
 
 # if __name__ == "__main__":

@@ -1,6 +1,7 @@
 import pandas as pd
 import requests
 
+
 def fetch_data_cb_api(df):
     """
 
@@ -13,6 +14,6 @@ def fetch_data_cb_api(df):
     if df.empty:
         df = pd.DataFrame([r])
         return df
-    else:
+    if not df.empty:
         return df.append(r, ignore_index=True)
     return None
