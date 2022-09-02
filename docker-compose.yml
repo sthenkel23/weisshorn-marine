@@ -3,7 +3,9 @@ version: "2"
 services:    
     lit-app:
         image: $IMAGE:$VERSION
-        environment: 
+        depends_on:
+              - fastapi-app
+        environment:
                 - PORT=8000
         build:
             context: .
