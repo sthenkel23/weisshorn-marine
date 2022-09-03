@@ -10,7 +10,7 @@ import streamlit as st
 # from consumer.src.marine.data.api import fetch_data_cb_api
 from summa import summarizer
 
-from consumer.src.db.firestore import collection, doc, doc_ref
+from db.firestore import collection, doc, doc_ref
 
 # Add title to the page.
 st.title("Text summarization")
