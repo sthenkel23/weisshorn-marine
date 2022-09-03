@@ -62,32 +62,32 @@ st.markdown("### Detailed Data View (firebase to pandas)")
 st.dataframe(pd.DataFrame(d))
 
 
-st.title("Consume from continueously updating file")
+# st.title("Consume from continueously updating file")
 
-placeholder = st.empty()
-df = pd.DataFrame({})
-val = 0.0
-while True:
-    with placeholder.container():
-        st.markdown("### Detailed Data View (updating)")
-        df, val = fetch_data_cb_api(df, val)
-        avg_price = np.mean(pd.to_numeric(df["amount"]))
-        min_ts = np.min(df["timestamp"].astype(str))
-        max_ts = np.max(df["timestamp"].astype(str))
-        # Add metric elements
-        kpi1, kpi2, kpi3 = st.columns(3)
-        kpi1.metric(
-            label="Mean Price",
-            value=round(avg_price, 2),
-            delta=round(avg_price) - 10,
-        )
-        kpi2.metric(
-            label="Min timestamp",
-            value=min_ts,
-        )
-        kpi3.metric(
-            label="Max timestamp",
-            value=max_ts,
-        )
-        st.dataframe(df)
-        time.sleep(10)
+# placeholder = st.empty()
+# df = pd.DataFrame({})
+# val = 0.0
+# while True:
+#     with placeholder.container():
+#         st.markdown("### Detailed Data View (updating)")
+#         df, val = fetch_data_cb_api(df, val)
+#         avg_price = np.mean(pd.to_numeric(df["amount"]))
+#         min_ts = np.min(df["timestamp"].astype(str))
+#         max_ts = np.max(df["timestamp"].astype(str))
+#         # Add metric elements
+#         kpi1, kpi2, kpi3 = st.columns(3)
+#         kpi1.metric(
+#             label="Mean Price",
+#             value=round(avg_price, 2),
+#             delta=round(avg_price) - 10,
+#         )
+#         kpi2.metric(
+#             label="Min timestamp",
+#             value=min_ts,
+#         )
+#         kpi3.metric(
+#             label="Max timestamp",
+#             value=max_ts,
+#         )
+#         st.dataframe(df)
+#         time.sleep(10)
