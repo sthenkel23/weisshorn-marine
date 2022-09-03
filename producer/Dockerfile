@@ -15,8 +15,8 @@ COPY producer/requirements.txt ./requirements.txt
 RUN . ./venv/bin/activate && pip install -r requirements.txt
 
 COPY dist/marine-0.0.0.1-py3-none-any.whl ./marine-0.0.0.1-py3-none-any.whl
-RUN  . ./venv/bin/activate && pip install marine-0.0.0.1-py3-none-any.whl
+RUN  . ./venv/bin/activate && pip install marine-0.0.0.1-py3-none-any.whl --upgrade
 
-ADD producer ./
+ADD ./ .
 CMD  . ./venv/bin/activate && uvicorn producer.src.main:app --host 0.0.0.0 --port $PORT
 # CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]

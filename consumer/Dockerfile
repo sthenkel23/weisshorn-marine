@@ -15,7 +15,7 @@ COPY consumer/requirements.txt ./requirements.txt
 RUN . ./venv/bin/activate && pip install -r requirements.txt
 
 COPY dist/marine-0.0.0.1-py3-none-any.whl ./marine-0.0.0.1-py3-none-any.whl
-RUN  . ./venv/bin/activate && pip install marine-0.0.0.1-py3-none-any.whl
+RUN  . ./venv/bin/activate && pip install marine-0.0.0.1-py3-none-any.whl --upgrade
 
 
 COPY gcl.json ./gcl.json
