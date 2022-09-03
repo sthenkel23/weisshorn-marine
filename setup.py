@@ -6,7 +6,7 @@ setuptools.setup(
     author="<author>",
     author_email="coder.henkelmann@gmail.com",
     description="A boilerplate",
-    packages=setuptools.find_packages(include=["producer", "consumer"]),
+    packages=setuptools.find_packages(include=["producer/src", "consumer/src"]),
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
