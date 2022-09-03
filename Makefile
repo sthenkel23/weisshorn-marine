@@ -65,7 +65,7 @@ docker:
 	cd consumer
 	docker build \
 		-t $(IMAGE):$(VERSION) . \
-		-f ./Dockerfile
+		-f ./${APP}/Dockerfile
 
 .PHONY: clean_docker
 clean_docker:
