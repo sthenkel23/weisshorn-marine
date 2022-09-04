@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 from db.firestore import collection, doc, doc_ref
-from marine.data.api import fetch_data_cb_api
+from marine.data.api import fetch_data_cb_api, fetch_data_backend_api
 from summa import summarizer
 
 # Add title to the page.
@@ -60,6 +60,9 @@ for doc in collection.stream():
 
 st.markdown("### Detailed Data View (firebase to pandas)")
 st.dataframe(pd.DataFrame(d))
+
+st.markdown("### Detailed Data View consuming from backend service")
+st.dataframe(fetch_data_backend_api())
 
 
 st.title("Consume from continueously updating file")
