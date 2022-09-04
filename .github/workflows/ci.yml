@@ -63,6 +63,7 @@ jobs:
           export IMAGE_BACKEND=${{ env.IMAGE_BACKEND }}
           export IMAGE_FRONTEND=${{ env.IMAGE_FRONTEND }}
           export VERSION=$VERSION
+          echo $HEROKU_BACKEND_NAME
           # docker-compose build
           make docker APP=producer IMAGE=${{ env.IMAGE_BACKEND }} VERSION=$VERSION 
           make docker APP=consumer IMAGE=${{ env.IMAGE_FRONTEND }} VERSION=$VERSION BACKEND_NAME=$HEROKU_BACKEND_NAME
