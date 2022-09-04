@@ -4,7 +4,7 @@ from os import getenv
 
 import aiohttp
 
-HEROKU_BACKEND_NAME = "weisshorn-backend"
+HEROKU_BACKEND_NAME = getenv("HEROKU_BACKEND_NAME")
 
 if getenv("IS_DOCKERIZED"):
     WS_CONN = f"ws://{HEROKU_BACKEND_NAME}.herokuapp.com/sample"
