@@ -65,7 +65,6 @@ endif
 .PHONY: docker
 docker:
 	@echo Building docker $(IMAGE):$(VERSION) ...
-	cd consumer
 	docker build \
 		-t $(IMAGE):$(VERSION) . \
 		-f ./${APP}/Dockerfile
