@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import asyncio
 import time
 from datetime import datetime
 
@@ -8,7 +9,32 @@ import pandas as pd
 import streamlit as st
 from db.firestore import collection, doc, doc_ref
 from marine.data.api import fetch_data_backend_api, fetch_data_cb_api
+from marine.utils import consumer
 from summa import summarizer
+
+st.set_page_config(page_title="stream", layout="wide")
+
+status = st.empty()
+connect = st.checkbox("Connect to WS Server")
+
+selected_channels = st.multiselect("Select Channels", ["A", "B", "C"], default=["A"])
+
+columns = [col.empty() for col in st.columns(len(selected_channels))]
+
+
+window_size = st.number_input("Window Size", min_value=10, max_value=100)
+
+if connect:
+    asyncio.run(
+        consumer(
+            dict(zip(selected_channels, columns)),
+            window_size,
+            status,
+        )
+    )
+else:
+    status.subheader("Disconnected.")
+
 
 # Add title to the page.
 st.title("Text summarization")
