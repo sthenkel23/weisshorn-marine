@@ -46,6 +46,6 @@ def fetch_data_backend_api(item: str):
 
     return (
         pd.DataFrame([r])
-        if response.status_code == "200"
+        if response.status_code == 200
         else pd.DataFrame({"response": response.status_code}, index=[0])
     )
