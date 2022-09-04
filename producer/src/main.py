@@ -2,7 +2,7 @@ import pandas as pd
 from fastapi import FastAPI
 
 # import uvicorn
-from producer.src.data.api import fetch_data_cb_api
+from data.api import fetch_data_cb_api
 
 app = FastAPI()
 
