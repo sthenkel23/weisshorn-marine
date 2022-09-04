@@ -35,7 +35,7 @@ def fetch_data_cb_api(df, prev_val):
     return None
 
 
-def fetch_data_backend_api(item):
+def fetch_data_backend_api(item: str):
     """
 
     :return: _description_
