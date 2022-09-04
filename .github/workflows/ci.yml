@@ -51,7 +51,7 @@ jobs:
     - name: Set environment var needed for Docker
       env: 
          FIREBASE_API_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-         HEROKU_FRONTEND_NAME: ${{ secrets.HEROKU_FRONTEND_NAME }}
+         HEROKU_BACKEND_NAME: ${{ secrets.HEROKU_BACKEND_NAME }}
       run: |
           # echo "IMAGE=registry.heroku.com/$HEROKU_APP_NAME/web" >> $GITHUB_ENV 
           echo "IMAGE_BACKEND=registry.heroku.com/$HEROKU_BACKEND_NAME/web" >> $GITHUB_ENV 
