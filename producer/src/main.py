@@ -1,8 +1,8 @@
 import pandas as pd
-from fastapi import FastAPI
 
 # import uvicorn
 from data.api import fetch_data_cb_api
+from fastapi import FastAPI
 
 app = FastAPI()
 

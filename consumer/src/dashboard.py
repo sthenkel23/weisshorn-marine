@@ -6,11 +6,9 @@ from datetime import datetime
 import numpy as np
 import pandas as pd
 import streamlit as st
-
+from db.firestore import collection, doc, doc_ref
 from marine.data.api import fetch_data_cb_api
 from summa import summarizer
-
-from db.firestore import collection, doc, doc_ref
 
 # Add title to the page.
 st.title("Text summarization")
