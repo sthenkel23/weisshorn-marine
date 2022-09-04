@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
-# import time
+import time
 from datetime import datetime
 
-# import numpy as np
+import numpy as np
 import pandas as pd
 import streamlit as st
 
-# from consumer.src.marine.data.api import fetch_data_cb_api
+from consumer.src.marine.data.api import fetch_data_cb_api
 from summa import summarizer
 
 from db.firestore import collection, doc, doc_ref
