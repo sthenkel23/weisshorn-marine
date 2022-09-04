@@ -7,7 +7,8 @@ import aiohttp
 HEROKU_BACKEND_NAME = getenv("HEROKU_BACKEND_NAME")
 
 if getenv("IS_DOCKERIZED"):
-    WS_CONN = f"ws://{HEROKU_BACKEND_NAME}.herokuapp.com/sample"
+    # WS_CONN = f"ws://{HEROKU_BACKEND_NAME}.herokuapp.com/sample"
+    WS_CONN = "ws://weisshorn-backend.herokuapp.com/sample"
 else:
     WS_CONN = "ws://127.0.0.1:8000/sample"
 
