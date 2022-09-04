@@ -1,6 +1,9 @@
-from data import items
+import asyncio
+from random import choice, randint
+
 from data.data_model import Item
-from fastapi import FastAPI
+from data.items import items
+from fastapi import FastAPI, WebSocket
 
 app = FastAPI()
 
@@ -25,6 +28,17 @@ def api1(name: str):
 @app.get("/apiv2/")
 def api2(name: str):
     return {"message": f"Hello! @{name} with"}
+
+
+CHANNELS = ["A", "B", "C"]
+
+
+@app.websocket("/sample")
+async def websocket_endpoint(websocket: WebSocket):
+    await websocket.accept()
+    while True:
+        await websocket.send_json({"channel": choice(CHANNELS), "data": randint(1, 10)})
+        await asyncio.sleep(0.5)
 
 
 # if __name__ == "__main__":

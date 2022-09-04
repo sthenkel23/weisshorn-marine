@@ -4,3 +4,4 @@ requests
 pandas
 pydantic
 asyncio
+websockets

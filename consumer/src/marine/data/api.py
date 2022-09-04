@@ -35,12 +35,17 @@ def fetch_data_cb_api(df, prev_val):
     return None
 
 
-def fetch_data_backend_api():
+def fetch_data_backend_api(item):
     """
 
     :return: _description_
     :rtype: pd.DataFrame
     """
-    response = requests.get("http://weisshorn-backend.herokuapp.com/items/foo")
+    response = requests.get(f"http://weisshorn-backend.herokuapp.com/items/{item}")
     r = response.json()
-    return pd.DataFrame([r])
+
+    return (
+        pd.DataFrame([r])
+        if response.status_code == "200"
+        else pd.DataFrame({"response": response.status_code}, index=[0])
+    )
