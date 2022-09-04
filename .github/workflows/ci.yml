@@ -64,8 +64,8 @@ jobs:
           export IMAGE_FRONTEND=${{ env.IMAGE_FRONTEND }}
           export VERSION=$VERSION
           # docker-compose build
-          make docker APP=producer IMAGE=${{ env.IMAGE_BACKEND }} VERSION=$VERSION BACKEND_NAME=$HEROKU_BACKEND_NAME
-          make docker APP=consumer IMAGE=${{ env.IMAGE_FRONTEND }} VERSION=$VERSION
+          make docker APP=producer IMAGE=${{ env.IMAGE_BACKEND }} VERSION=$VERSION 
+          make docker APP=consumer IMAGE=${{ env.IMAGE_FRONTEND }} VERSION=$VERSION BACKEND_NAME=$HEROKU_BACKEND_NAME
       
     - name: Login to Heroku Container registry
       run: heroku container:login
