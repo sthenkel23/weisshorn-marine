@@ -17,6 +17,9 @@ format:
 sort:
 	isort $$(git ls-files '*.py')
 
+mypy:
+	mypy $$(git ls-files '*.py')
+
 testing:
 	python -m pytest -vv --cov=${APP}/src tests/*.py
 
