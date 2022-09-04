@@ -9,7 +9,7 @@ install:
 		pip install -r requirements-test.txt
 
 lint:
-	pylint --disable=C $$(git ls-files '*.py')
+	pylint --disable=C,E0611,R0903,E1136 $$(git ls-files '*.py')
 
 format:
 	black $$(git ls-files '*.py')

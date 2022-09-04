@@ -1,6 +1,6 @@
-from fastapi import FastAPI
-from data.data_model import Item
 from data import items
+from data.data_model import Item
+from fastapi import FastAPI
 
 app = FastAPI()
 
@@ -16,6 +16,7 @@ def index():
 async def read_item(item_id: str):
     return items[item_id]
 
+
 @app.get("/apiv1/{name}")
 def api1(name: str):
     return {"message": f"Hello! @{name}"}
@@ -23,9 +24,7 @@ def api1(name: str):
 
 @app.get("/apiv2/")
 def api2(name: str):
-    return {
-        "message": f"Hello! @{name} with"
-    }
+    return {"message": f"Hello! @{name} with"}
 
 
 # if __name__ == "__main__":

@@ -35,13 +35,12 @@ def fetch_data_cb_api(df, prev_val):
     return None
 
 
-
 def fetch_data_backend_api():
     """
 
     :return: _description_
     :rtype: pd.DataFrame
     """
-    response = requests.get("http://weisshorn-backend.herokuapp.com/apiv2/?name=peter")
+    response = requests.get("http://weisshorn-backend.herokuapp.com/items/foo")
     r = response.json()
     return pd.DataFrame([r])

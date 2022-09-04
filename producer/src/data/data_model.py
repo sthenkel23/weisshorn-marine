@@ -1,4 +1,5 @@
-from typing import Union
+from typing import List, Union
+
 from pydantic import BaseModel
 
 
@@ -7,4 +8,4 @@ class Item(BaseModel):
     description: Union[str, None] = None
     price: float
     tax: float = 10.5
-    tags: list[str] = []
+    tags: List[str] = []
