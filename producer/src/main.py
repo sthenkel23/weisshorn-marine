@@ -1,6 +1,6 @@
 import asyncio
 from random import choice, randint
-
+import json
 from data.api import fetch_data_cb_api_continuously
 from data.data_model import Item
 from data.items import items
@@ -45,7 +45,7 @@ async def websocket_endpoint(websocket: WebSocket):
         #     r = {"channel": choice(CHANNELS), "data": randint(1, 10)}
         # print(res.text, r)
         # r = {"channel": choice(CHANNELS), "data": randint(1, 10)}
-        await websocket.send_json(r)
+        await websocket.send_json(json.dumps(r))
         await asyncio.sleep(0.5)
 
 
