@@ -38,13 +38,13 @@ CHANNELS = ["A", "B", "C"]
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
     while True:
-        r, df = fetch_data_cb_api_continuously()
-        if r:
-            d = df.to_dict()
-            d.update({"channel": choice(CHANNELS), "data": randint(1, 10)})
-        else:
-            d = {"channel": choice(CHANNELS), "data": randint(1, 10)}
-        await websocket.send_json(d)
+        # r, df = fetch_data_cb_api_continuously()
+        # if r:
+        #     d = df.to_dict()
+        #     d.update({"channel": choice(CHANNELS), "data": randint(1, 10)})
+        # else:
+        #     d = {"channel": choice(CHANNELS), "data": randint(1, 10)}
+        await websocket.send_json({"channel": choice(CHANNELS), "data": randint(1, 10)})
         await asyncio.sleep(0.5)
 
 
