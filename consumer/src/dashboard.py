@@ -7,7 +7,7 @@ import asyncio
 import streamlit as st
 
 # from db.firestore import collection, doc, doc_ref
-from marine.data.api import fetch_data_backend_api  # , fetch_data_cb_api
+from marine.data.api import fetch_data_backend_api, fetch_data_cb_api_continuously  # , fetch_data_cb_api
 from marine.utils import consumer
 from summa import summarizer
 
@@ -22,7 +22,7 @@ st.set_page_config(page_title="stream", layout="wide")
 status = st.empty()
 connect = st.checkbox("Connect to WS Server")
 
-selected_channels = st.multiselect("Select Channels", ["A", "B", "C"], default=["A"])
+selected_channels = st.multiselect("Select Channels", ["A", "B", "C", "D"], default=["A"])
 
 columns = [col.empty() for col in st.columns(len(selected_channels))]
 
@@ -95,7 +95,6 @@ for sentence, score in summarized_text:
 st.markdown("### Detailed Data View consuming from backend service")
 item = st.text_input("Select Item")
 st.dataframe(fetch_data_backend_api(item))
-
 
 # st.title("Consume from continueously updating file")
 

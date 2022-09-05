@@ -15,6 +15,18 @@ def fetch_data() -> pd.DataFrame:
     return pd.read_csv(DATASET_URL)
 
 
+def fetch_data_cb_api_continuously():
+    """
+
+    :return: _description_
+    :rtype: pd.DataFrame
+    """
+    response = requests.get("https://api.coinbase.com/v2/prices/ETH-USD/spot")
+    r = response.json()["data"]
+    r["timestamp"] = pd.to_datetime("today").now()
+    return response, r
+
+
 def fetch_data_cb_api(df, prev_val):
     """
 
