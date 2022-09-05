@@ -1,7 +1,7 @@
 import asyncio
 from random import choice, randint
 
-from data.api import fetch_data_cb_api_continuously
+#from data.api import fetch_data_cb_api_continuously
 from data.data_model import Item
 from data.items import items
 from fastapi import FastAPI, WebSocket
