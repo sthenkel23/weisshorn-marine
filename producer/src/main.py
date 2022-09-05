@@ -43,6 +43,7 @@ async def websocket_endpoint(websocket: WebSocket):
             r.update({"channel": choice(CHANNELS), "data": randint(1, 10)})
         else:
             r = {"channel": choice(CHANNELS), "data": randint(1, 10)}
+        print(res.text, r)
         await websocket.send_json(r)
         await asyncio.sleep(0.5)
 
