@@ -10,7 +10,10 @@ WORKDIR /home/docker_user/workspace
 ARG BACKEND_NAME
 ENV PATH="${PATH}:/home/docker_user/.local/bin"
 ENV IS_DOCKERIZED true
-ENV HEROKU_BACKEND_NAME=$BACKEND_NAME
+ENV HEROKU_BACKEND_NAME="ws://weisshorn-backend.herokuapp.com/sample"
+ENV HEROKU_BACKEND_NAME2=$BACKEND_NAME
+RUN echo $HEROKU_BACKEND_NAME2
+RUN echo $HEROKU_BACKEND_NAME
 RUN python3 -m venv ./venv
 RUN . ./venv/bin/activate && python3 -m pip install --upgrade pip
 
