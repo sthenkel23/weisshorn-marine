@@ -19,7 +19,7 @@ async def consumer(graphs, window_size, status):
 
     async with aiohttp.ClientSession(trust_env=True) as session:
         status.subheader(f"Connecting to {WS_CONN}")
-        async with session.ws_connect("/sample") as websocket:
+        async with session.ws_connect(WS_CONN) as websocket:
             status.subheader(f"Connected to: {WS_CONN}")
             async for message in websocket:
                 data = message.json()
