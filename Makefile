@@ -65,9 +65,9 @@ endif
 .PHONY: docker
 docker:
 	@echo Building docker $(IMAGE):$(VERSION) ...
-	docker build \
+	docker build --build-arg BACKEND_NAME=${BACKEND_NAME} \
 		-t $(IMAGE):$(VERSION) . \
-		-f ./${APP}/Dockerfile
+		-f ./${APP}/Dockerfile \
 
 .PHONY: clean_docker
 clean_docker:
