@@ -10,7 +10,7 @@ if getenv("IS_DOCKERIZED"):
     WS_CONN = f"ws://{HEROKU_BACKEND_NAME}.herokuapp.com/sample"
     # WS_CONN = "ws://weisshorn-backend.herokuapp.com/sample"
 else:
-    WS_CONN = "ws://127.0.0.1:8000/sample"
+    WS_CONN = "ws://localhost:8000/sample"
 
 
 async def consumer(graphs, window_size, status):
@@ -19,7 +19,7 @@ async def consumer(graphs, window_size, status):
 
     async with aiohttp.ClientSession(trust_env=True) as session:
         status.subheader(f"Connecting to {WS_CONN}")
-        async with session.ws_connect(WS_CONN) as websocket:
+        async with session.ws_connect("/sample") as websocket:
             status.subheader(f"Connected to: {WS_CONN}")
             async for message in websocket:
                 data = message.json()
