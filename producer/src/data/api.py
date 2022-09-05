@@ -12,4 +12,3 @@ def fetch_data_cb_api_continuously():
     r = response.json()["data"]
     r["timestamp"] = pd.to_datetime("today").now()
     return response, r
-
