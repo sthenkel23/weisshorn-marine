@@ -51,10 +51,11 @@ jobs:
     - name: Set environment var needed for Docker
       env: 
          FIREBASE_API_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+         HEROKU_BACKEND_NAME: ${{ secrets.HEROKU_BACKEND_NAME }}
       run: |
           # echo "IMAGE=registry.heroku.com/$HEROKU_APP_NAME/web" >> $GITHUB_ENV 
           echo "IMAGE_BACKEND=registry.heroku.com/$HEROKU_BACKEND_NAME/web" >> $GITHUB_ENV 
-          echo "IMAGE_FRONTEND=registry.heroku.com/$HEROKU_FRONTEND_NAME/web" >> $GITHUB_ENV  
+          echo "IMAGE_FRONTEND=registry.heroku.com/$HEROKU_FRONTEND_NAME/web" >> $GITHUB_ENV 
           echo $FIREBASE_API_KEY > gcl.json
           
     - name: Build the Docker images
@@ -63,7 +64,6 @@ jobs:
           export IMAGE_BACKEND=${{ env.IMAGE_BACKEND }}
           export IMAGE_FRONTEND=${{ env.IMAGE_FRONTEND }}
           export VERSION=$VERSION
-          echo $HEROKU_BACKEND_NAME
           # docker-compose build
           make docker APP=producer IMAGE=${{ env.IMAGE_BACKEND }} VERSION=$VERSION
           make docker APP=consumer IMAGE=${{ env.IMAGE_FRONTEND }} VERSION=$VERSION BACKEND_NAME=$HEROKU_BACKEND_NAME
