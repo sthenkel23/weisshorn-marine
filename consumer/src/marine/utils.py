@@ -10,7 +10,7 @@ if getenv("IS_DOCKERIZED"):
     WS_CONN = f"ws://{HEROKU_BACKEND_NAME}.herokuapp.com/sample"
     # WS_CONN = "ws://weisshorn-backend.herokuapp.com/sample"
 else:
-    WS_CONN = "ws://localhost:8000/sample"
+    WS_CONN = "ws://0.0.0.0:8000/sample"
 
 
 async def consumer(graphs, window_size, status):

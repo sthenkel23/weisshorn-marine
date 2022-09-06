@@ -1,6 +1,6 @@
 import asyncio
 from random import choice, randint
-#from data.api import fetch_data_cb_api_continuously
+from data.api import fetch_data_cb_api_continuously
 from data.data_model import Item
 from data.items import items
 from fastapi import FastAPI, WebSocket
@@ -38,11 +38,15 @@ CHANNELS = ["A", "B", "C"]
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
     while True:
-        #_, r = fetch_data_cb_api_continuously()
+        r = {}
+        print(r)
+        _, r = fetch_data_cb_api_continuously()
+        print(r)
         # if res:
-        #r.update({"channel": choice(CHANNELS), "data": randint(1, 10)})
+        r.update({"channel": choice(CHANNELS), "data": randint(1, 10)})
+        print(r)
         # else:
-        r = {"channel": choice(CHANNELS), "data": randint(1, 10)}
+        # r = {"channel": choice(CHANNELS), "data": randint(1, 10)}
         # print(res.text, r)
         # r = {"channel": choice(CHANNELS), "data": randint(1, 10)}
         await websocket.send_json(r)
