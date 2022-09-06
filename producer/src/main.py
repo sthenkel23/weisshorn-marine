@@ -31,7 +31,7 @@ def api2(name: str):
     return {"message": f"Hello! @{name} with"}
 
 
-CHANNELS = ["A", "B", "C"]
+CHANNELS = ["A", "B", "C", "D"]
 
 
 @app.websocket("/sample")
