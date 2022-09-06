@@ -1,5 +1,6 @@
-import requests
 from datetime import datetime
+
+import requests
 
 
 def fetch_data_cb_api_continuously():

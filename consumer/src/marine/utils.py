@@ -3,6 +3,7 @@ from functools import partial
 from os import getenv
 
 import aiohttp
+from db.firestore import doc_ref
 
 HEROKU_BACKEND_NAME = getenv("HEROKU_BACKEND_NAME")
 
@@ -38,3 +39,4 @@ async def consumer(graphs, window_size, status):
                         graph.bar_chart(channel_data)
                     elif channel == "D":
                         graph.line_chart(channel_tdata)
+                        doc_ref.set(channel_tdata)

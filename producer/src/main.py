@@ -39,7 +39,7 @@ async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
     while True:
         res, r = fetch_data_cb_api_continuously()
-        
+
         if res:
             r.update({"channel": choice(CHANNELS), "data": randint(1, 10)})
         else:
