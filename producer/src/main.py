@@ -4,7 +4,6 @@ from random import choice, randint
 from data.data_model import Item
 from data.items import items
 from fastapi import FastAPI, WebSocket
-import json
 
 
 app = FastAPI()
@@ -46,7 +45,7 @@ async def websocket_endpoint(websocket: WebSocket):
         r = {"channel": choice(CHANNELS), "data": randint(1, 10)}
         # print(res.text, r)
         # r = {"channel": choice(CHANNELS), "data": randint(1, 10)}
-        await websocket.send_json(json.dumps(r))
+        await websocket.send_json(r)
         await asyncio.sleep(0.5)
 
 
