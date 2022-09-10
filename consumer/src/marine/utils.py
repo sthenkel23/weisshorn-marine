@@ -50,3 +50,19 @@ async def consumer_alerts_handling(status):
                 data = message.json()
                 status.caption(f"Event Occurrence.. Stored at {data['timestamp']}")
                 collection.document(f"alert_{data['timestamp']}").set(data)
+
+                status.title("Past alerts")
+                status.subheader("Meta information breakdown:")
+                status.text("Alert: ...")
+                d = {}
+                for doc in collection.stream():
+                    post = doc.to_dict()
+                    # ids = post["id"]
+                    amount = post["amount"]
+                    timestamp = post["timestamp"]
+
+                    status.subheader(f"Alert: {doc.id}")
+                    status.write(f"Alert Amount: {amount}")
+                    status.write(f"Timestamp: {timestamp}")
+                    # st.write(f"ID: {ids}")
+                    d[doc.id] = doc.to_dict()
