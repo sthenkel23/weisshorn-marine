@@ -24,6 +24,7 @@ async def consumer(graphs, window_size, status):
             status.subheader(f"Connected to: {WS_CONN}")
             async for message in websocket:
                 data = message.json()
+                doc_ref.set(data)
 
                 windows[data["channel"]].append(data["data"])
                 twindows[data["channel"]].append(data["amount"])
@@ -39,4 +40,4 @@ async def consumer(graphs, window_size, status):
                         graph.bar_chart(channel_data)
                     elif channel == "D":
                         graph.line_chart(channel_tdata)
-                        doc_ref.set(data)
+
