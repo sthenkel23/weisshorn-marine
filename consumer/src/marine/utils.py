@@ -39,3 +39,14 @@ async def consumer(graphs, window_size, status):
                         graph.bar_chart(channel_data)
                     elif channel == "D":
                         graph.line_chart(channel_data)
+
+
+async def consumer_alerts_handling(status):
+    async with aiohttp.ClientSession(trust_env=True) as session:
+        status.subheader(f"Connecting to {WS_CONN}")
+        async with session.ws_connect(WS_CONN) as websocket:
+            status.subheader(f"Connected to: {WS_CONN}")
+            async for message in websocket:
+                data = message.json()
+                status.caption(f"Event Occurrence.. Stored at {data['timestamp']}")
+                collection.document(f"alert_{data['timestamp']}").set(data)

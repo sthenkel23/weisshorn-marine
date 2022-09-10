@@ -11,7 +11,6 @@ ARG BACKEND_NAME
 ENV PATH="${PATH}:/home/docker_user/.local/bin"
 ENV IS_DOCKERIZED true
 ENV HEROKU_BACKEND_NAME=$BACKEND_NAME
-RUN echo $HEROKU_BACKEND_NAME
 RUN python3 -m venv ./venv
 RUN . ./venv/bin/activate && python3 -m pip install --upgrade pip
 
@@ -25,4 +24,4 @@ RUN  . ./venv/bin/activate && pip install marine-0.0.0.1-py3-none-any.whl --upgr
 COPY gcl.json ./gcl.json
 
 COPY ./ .
-CMD  . ./venv/bin/activate && streamlit run --server.port $PORT consumer/src/dashboard.py
+CMD  . ./venv/bin/activate && streamlit run --server.port $PORT consumer/src/dashboard-alerts.py

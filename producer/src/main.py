@@ -45,10 +45,10 @@ async def websocket_endpoint(websocket: WebSocket):
                 r = {"channel": choice(CHANNELS), "data": randint(1, 10)}
             r.update({"channel": "D"})
             await websocket.send_json(r)
-            await asyncio.sleep(5.)
+            await asyncio.sleep(5.0)
             event_cond = r["amount"]
         else:
-            await asyncio.sleep(.5)
+            await asyncio.sleep(0.5)
 
 
 # if __name__ == "__main__":
