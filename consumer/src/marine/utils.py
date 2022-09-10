@@ -3,7 +3,7 @@ from functools import partial
 from os import getenv
 
 import aiohttp
-from db.firestore import doc_ref
+from db.firestore import collection
 
 HEROKU_BACKEND_NAME = getenv("HEROKU_BACKEND_NAME")
 
@@ -24,7 +24,7 @@ async def consumer(graphs, window_size, status):
             status.subheader(f"Connected to: {WS_CONN}")
             async for message in websocket:
                 data = message.json()
-                doc_ref.set(data)
+                collection.document(f"alert_{data['timestamp']}").set(data)
 
                 windows[data["channel"]].append(data["amount"])
                 # twindows[data["channel"]].append(data["amount"])
