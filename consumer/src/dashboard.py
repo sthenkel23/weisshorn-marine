@@ -76,19 +76,19 @@ for sentence, score in summarized_text:
 #         {"description": description, "id": ids, "timestamp": datetime.now(tz=None)}
 #     )
 
-st.title("Import firebase data by documents in collection")
-d = {}
-for doc in collection.stream():
-    post = doc.to_dict()
-    ids = post["id"]
-    description = post["description"]
-    timestamp = post["timestamp"]
+# st.title("Import firebase data by documents in collection")
+# d = {}
+# for doc in collection.stream():
+#     post = doc.to_dict()
+#     # ids = post["id"]
+#     description = post["description"]
+#     timestamp = post["timestamp"]
 
-    st.subheader(f"Alert: {doc.id}")
-    st.write(f"Alert Description: {description}")
-    st.write(f"Timestamp: {timestamp}")
-    st.write(f"ID: {ids}")
-    d[doc.id] = doc.to_dict()
+#     st.subheader(f"Alert: {doc.id}")
+#     st.write(f"Alert Description: {description}")
+#     st.write(f"Timestamp: {timestamp}")
+#     # st.write(f"ID: {ids}")
+#     d[doc.id] = doc.to_dict()
 
 # st.markdown("### Detailed Data View (firebase to pandas)")
 # st.dataframe(pd.DataFrame(d))
