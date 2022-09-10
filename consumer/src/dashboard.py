@@ -5,8 +5,8 @@ import asyncio
 # import numpy as np
 # import pandas as pd
 import streamlit as st
-from db.firestore import collection, doc
-from marine.data.api import fetch_data_backend_api  # , fetch_data_cb_api
+
+# from marine.data.api import fetch_data_backend_api  # , fetch_data_cb_api
 from marine.utils import consumer
 from summa import summarizer
 
@@ -75,27 +75,6 @@ for sentence, score in summarized_text:
 #     doc_ref.set(
 #         {"description": description, "id": ids, "timestamp": datetime.now(tz=None)}
 #     )
-
-st.title("Import firebase data by documents in collection")
-d = {}
-for doc in collection.stream():
-    post = doc.to_dict()
-    # ids = post["id"]
-    amount = post["amount"]
-    timestamp = post["timestamp"]
-
-    st.subheader(f"Alert: {doc.id}")
-    st.write(f"Alert Amount: {amount}")
-    st.write(f"Timestamp: {timestamp}")
-    # st.write(f"ID: {ids}")
-    d[doc.id] = doc.to_dict()
-
-# st.markdown("### Detailed Data View (firebase to pandas)")
-# st.dataframe(pd.DataFrame(d))
-
-st.markdown("### Detailed Data View consuming from backend service")
-item = st.text_input("Select Item")
-st.dataframe(fetch_data_backend_api(item))
 
 # st.title("Consume from continueously updating file")
 

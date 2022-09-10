@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 import asyncio
+
 import streamlit as st
 from db.firestore import collection, doc
 from marine.utils import consumer_alerts_handling
-
 
 st.set_page_config(page_title="marine-alerts", layout="wide")
 
