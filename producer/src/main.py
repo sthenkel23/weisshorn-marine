@@ -39,10 +39,7 @@ async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
     while True:
         res, r = fetch_data_cb_api_continuously()
-
-        if res:
-            r.update({"channel": choice(CHANNELS), "data": randint(1, 10)})
-        else:
+        if not res:
             r = {"channel": choice(CHANNELS), "data": randint(1, 10)}
         await websocket.send_json(r)
         await asyncio.sleep(0.5)
