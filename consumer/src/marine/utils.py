@@ -39,6 +39,4 @@ async def consumer(graphs, window_size, status):
                         graph.bar_chart(channel_data)
                     elif channel == "D":
                         graph.line_chart(channel_tdata)
-                        doc_ref.set(
-                            {"channel": data["channel"], "amount": data["amount"]}
-                        )
+                        doc_ref.set(data)
