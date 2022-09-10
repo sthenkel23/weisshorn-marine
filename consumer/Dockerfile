@@ -24,4 +24,4 @@ RUN  . ./venv/bin/activate && pip install marine-0.0.0.1-py3-none-any.whl --upgr
 COPY gcl.json ./gcl.json
 
 COPY ./ .
-CMD  . ./venv/bin/activate && streamlit run --server.port $PORT consumer/src/dashboard-alerts.py
+CMD  . ./venv/bin/activate && streamlit run --server.port $PORT consumer/src/dashboard.py
