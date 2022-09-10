@@ -4,11 +4,12 @@ APP := consumer
 
 install:
 	pip install --upgrade pip && \
-		pip install -r ${APP}/requirements.txt && \
-		pip install -r ${APP}/requirements-test.txt
+		pip install -r consumer/requirements.txt && \
+		pip install -r producer/requirements.txt && \
+		pip install -r requirements-test.txt
 
 lint:
-	pylint --disable=C $$(git ls-files '*.py')
+	pylint --disable=C,E0611,R0903,E1136 $$(git ls-files '*.py')
 
 format:
 	black $$(git ls-files '*.py')
@@ -16,11 +17,14 @@ format:
 sort:
 	isort $$(git ls-files '*.py')
 
+mypy:
+	mypy $$(git ls-files '*.py')
+
 testing:
-	python -m pytest -vv --cov=consumer/src tests/*.py
+	python -m pytest -vv --cov=${APP}/src tests/*.py
 
 profile-test:
-	python -m pytest -vv --durations=1 --durations-min=1.0 --cov=consumer/src tests/*.py
+	python -m pytest -vv --durations=1 --durations-min=1.0 --cov=${APP}/src tests/*.py
 
 parallel-test:
 	python -m pytest -vv -n auto --dist loadgroup tests/*.py
@@ -37,7 +41,7 @@ source-virtual:
 build-pypi:
 	pip install --upgrade pip
 	pip install build
-	python3 -m build consumer/src
+	python3 -m build 
 
 .PHONY: run-app
 run-app:
@@ -61,10 +65,9 @@ endif
 .PHONY: docker
 docker:
 	@echo Building docker $(IMAGE):$(VERSION) ...
-	cd consumer
-	docker build \
+	docker build --build-arg BACKEND_NAME=${BACKEND_NAME} \
 		-t $(IMAGE):$(VERSION) . \
-		-f ./Dockerfile
+		-f ./${APP}/Dockerfile \
 
 .PHONY: clean_docker
 clean_docker:

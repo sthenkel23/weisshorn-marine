@@ -1,6 +1,8 @@
 # Required for App
 streamlit==1.12.2
 summa
+aiohttp
+asyncio
 # Required for package management
 setuptools
 

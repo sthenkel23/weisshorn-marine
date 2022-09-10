@@ -8,6 +8,8 @@ on:
 
 env: 
   HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }} 
+  HEROKU_BACKEND_NAME: ${{ secrets.HEROKU_BACKEND_NAME }}
+  HEROKU_FRONTEND_NAME: ${{ secrets.HEROKU_FRONTEND_NAME }} 
   HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
   LIB_NAME: ${{ secrets.LIB_NAME }}
   VERSION: latest
@@ -49,24 +51,32 @@ jobs:
     - name: Set environment var needed for Docker
       env: 
          FIREBASE_API_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+         HEROKU_BACKEND_NAME: ${{ secrets.HEROKU_BACKEND_NAME }}
       run: |
-          echo "IMAGE=registry.heroku.com/$HEROKU_APP_NAME/web" >> $GITHUB_ENV 
-          echo $FIREBASE_API_KEY > consumer/gcl.json
+          # echo "IMAGE=registry.heroku.com/$HEROKU_APP_NAME/web" >> $GITHUB_ENV 
+          echo "IMAGE_BACKEND=registry.heroku.com/$HEROKU_BACKEND_NAME/web" >> $GITHUB_ENV 
+          echo "IMAGE_FRONTEND=registry.heroku.com/$HEROKU_FRONTEND_NAME/web" >> $GITHUB_ENV 
+          echo $FIREBASE_API_KEY > gcl.json
           
-    - name: Build the Docker image
+    - name: Build the Docker images
       
       run: |
-          export IMAGE=${{ env.IMAGE }}
+          export IMAGE_BACKEND=${{ env.IMAGE_BACKEND }}
+          export IMAGE_FRONTEND=${{ env.IMAGE_FRONTEND }}
           export VERSION=$VERSION
-          docker-compose build
-          # make docker IMAGE=${{ env.IMAGE }} VERSION=$VERSION
+          # docker-compose build
+          make docker APP=producer IMAGE=${{ env.IMAGE_BACKEND }} VERSION=$VERSION
+          make docker APP=consumer IMAGE=${{ env.IMAGE_FRONTEND }} VERSION=$VERSION BACKEND_NAME=$HEROKU_BACKEND_NAME
       
     - name: Login to Heroku Container registry
       run: heroku container:login
       
     - name: Build and push
       # run: heroku container:push -a $HEROKU_APP_NAME web
-      run: docker push ${{ env.IMAGE }}:$VERSION
+      # run: docker push ${{ env.IMAGE }}:$VERSION
+      run: | 
+        docker push ${{ env.IMAGE_BACKEND }}:$VERSION
+        docker push ${{ env.IMAGE_FRONTEND }}:$VERSION
       
   deploy:
     needs: ["test", "build"]
@@ -75,5 +85,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Release
-      run: heroku container:release -a $HEROKU_APP_NAME web
+      # run: heroku container:release -a $HEROKU_APP_NAME web
+      run: |
+        heroku container:release -a $HEROKU_BACKEND_NAME web
+        heroku container:release -a $HEROKU_FRONTEND_NAME web
       

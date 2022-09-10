@@ -33,3 +33,19 @@ def fetch_data_cb_api(df, prev_val):
     if r["amount"] == df["amount"].iloc[-1]:
         return df, r["amount"]
     return None
+
+
+def fetch_data_backend_api(item: str):
+    """
+
+    :return: _description_
+    :rtype: pd.DataFrame
+    """
+    response = requests.get(f"http://weisshorn-backend.herokuapp.com/items/{item}")
+    r = response.json()
+
+    return (
+        pd.DataFrame([r])
+        if response.status_code == 200
+        else pd.DataFrame({"response": response.status_code}, index=[0])
+    )
