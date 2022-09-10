@@ -16,7 +16,7 @@ else:
 
 async def consumer(graphs, window_size, status):
     windows = defaultdict(partial(deque, [0] * window_size, maxlen=window_size))
-    twindows = defaultdict(partial(deque, [0] * window_size, maxlen=window_size))
+    # twindows = defaultdict(partial(deque, [0] * window_size, maxlen=window_size))
 
     async with aiohttp.ClientSession(trust_env=True) as session:
         status.subheader(f"Connecting to {WS_CONN}")
@@ -39,4 +39,3 @@ async def consumer(graphs, window_size, status):
                         graph.bar_chart(channel_data)
                     elif channel == "D":
                         graph.line_chart(channel_data)
-

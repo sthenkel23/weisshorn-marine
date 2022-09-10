@@ -37,7 +37,7 @@ CHANNELS = ["A", "B", "C", "D"]
 @app.websocket("/sample")
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
-    event_cond = 0.
+    event_cond = 0.0
     while True:
         res, r = fetch_data_cb_api_continuously()
         if r != event_cond:
@@ -48,6 +48,7 @@ async def websocket_endpoint(websocket: WebSocket):
             event_cond = r
         else:
             await asyncio.sleep(0.5)
-        
+
+
 # if __name__ == "__main__":
 #    uvicorn.run(app, host="127.0.0.1", port=4000, debug=True)
