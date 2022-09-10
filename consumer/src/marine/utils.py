@@ -26,12 +26,11 @@ async def consumer(graphs, window_size, status):
                 data = message.json()
                 doc_ref.set(data)
 
-                windows[data["channel"]].append(data["data"])
-                twindows[data["channel"]].append(data["amount"])
+                windows[data["channel"]].append(data["amount"])
+                # twindows[data["channel"]].append(data["amount"])
 
                 for channel, graph in graphs.items():
                     channel_data = {channel: windows[channel]}
-                    channel_tdata = {channel: twindows[channel]}
                     if channel == "A":
                         graph.line_chart(channel_data)
                     elif channel == "B":
@@ -39,5 +38,5 @@ async def consumer(graphs, window_size, status):
                     elif channel == "C":
                         graph.bar_chart(channel_data)
                     elif channel == "D":
-                        graph.line_chart(channel_tdata)
+                        graph.line_chart(channel_data)
 
