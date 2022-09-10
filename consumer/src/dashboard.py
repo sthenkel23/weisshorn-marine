@@ -30,16 +30,16 @@ columns = [col.empty() for col in st.columns(len(selected_channels))]
 
 window_size = st.number_input("Window Size", min_value=10, max_value=100)
 
-if connect:
-    asyncio.run(
-        consumer(
-            dict(zip(selected_channels, columns)),
-            window_size,
-            status,
-        )
+# if connect:
+asyncio.run(
+    consumer(
+        dict(zip(selected_channels, columns)),
+        window_size,
+        status,
     )
-else:
-    status.subheader("Disconnected.")
+)
+# else:
+#    status.subheader("Disconnected.")
 
 
 # Add title to the page.
