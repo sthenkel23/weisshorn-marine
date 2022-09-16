@@ -15,11 +15,8 @@ def index():
         "message": "This is the home page of this API. Go to /apiv1/ or /apiv2/?name="
     }
 
-
 @app.get("/items/{item_id}", response_model=Item, response_model_exclude_unset=True)
 async def read_item(item_id: str):
-    if item_id == "dump":
-        return items
     return items[item_id]
 
 
