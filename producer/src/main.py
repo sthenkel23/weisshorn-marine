@@ -20,8 +20,7 @@ def index():
 async def read_item(item_id: str):
     if item_id == "dump":
         return items
-    else:
-        return items[item_id]
+    return items[item_id]
 
 
 @app.get("/apiv1/{name}")
