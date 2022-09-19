@@ -22,6 +22,7 @@ async def read_item(item_id: str):
 
 @app.post("/items/")
 async def create_item(item: Item):
+    print(item)
     return item
 
 @app.get("/apiv1/{name}")
