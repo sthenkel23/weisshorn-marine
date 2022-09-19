@@ -10,7 +10,7 @@ import logging as logger
 
 app = FastAPI()
 logger.config.fileConfig('logging.conf', disable_existing_loggers=False)
-logger = logging.getLogger(__name__)
+logger = logger.getLogger(__name__)
 
 @app.get("/")
 def index():
