@@ -2,6 +2,7 @@ import asyncio
 from random import choice, randint
 
 from data.api import fetch_data_cb_api_continuously
+from data.db import doc_ref
 from data.data_model import Item
 from data.items import items
 from fastapi import FastAPI, WebSocket
@@ -23,6 +24,8 @@ async def read_item(item_id: str):
 @app.post("/items/")
 async def create_item(item: Item):
     print(f"Posted: \n \n {item}")
+    print(f"Stored in db")
+    doc_ref.set(item)
     return item
 
 
