@@ -23,9 +23,10 @@ async def read_item(item_id: str):
 
 @app.post("/items/")
 async def create_item(item: Item):
-    print(f"Posted: \n \n {item}")
+    post=item.dict()
+    print(f"Posted: \n \n {post}")
+    doc_ref.set(post)
     print("Stored in db")
-    doc_ref.set(item.dict())
     return item
 
 
