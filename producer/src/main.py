@@ -6,9 +6,11 @@ from data.db import doc_ref
 from data.data_model import Item
 from data.items import items
 from fastapi import FastAPI, WebSocket
+import logging as logger
 
 app = FastAPI()
-
+logger.config.fileConfig('logging.conf', disable_existing_loggers=False)
+logger = logging.getLogger(__name__)
 
 @app.get("/")
 def index():
@@ -23,9 +25,9 @@ async def read_item(item_id: str):
 
 @app.post("/items/")
 async def create_item(item: Item):
-    print(f"Posted: \n \n {item}")
-    print("Stored in db")
-    doc_ref.set(item)
+    logger.info(f"Posted: \n \n {item}")
+    logger.info("Stored in db")
+    doc_ref.set(item.dict())
     return item
 
 
