@@ -12,7 +12,7 @@ class Item(BaseModel):
 
 
 class Price(BaseModel):
-    timestamp: datetime
+    timestamp: str
     amount: float
     base: str
     currency: str
