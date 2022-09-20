@@ -42,7 +42,7 @@ async def create_item(item: Item):
 
 
 @app.post("/api_prices/")
-async def create_item(price: Price):
+async def create_price(price: Price):
     """_summary_
 
     :param price: _description_
@@ -56,7 +56,7 @@ async def create_item(price: Price):
     print(f'Posted: \n \n {post}')
     doc_ref.set(post)
     print('Stored in db')
-    return item
+    return price
 
 
 
