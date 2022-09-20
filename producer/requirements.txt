@@ -1,7 +1,9 @@
 fastapi
 uvicorn
 requests
-pandas
 pydantic
 asyncio
 websockets
+
+# Required for db and data massaging
+google-cloud-firestore
