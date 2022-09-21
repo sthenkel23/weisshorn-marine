@@ -15,4 +15,4 @@ class Price(BaseModel):
     amount: float
     base: str
     currency: str
-    pred: float
+    pred: float = None
