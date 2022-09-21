@@ -16,3 +16,5 @@ class Price(BaseModel):
     base: str
     currency: str
     pred: float = None
+    pred_up: float = None
+    pred_dw: float = None
