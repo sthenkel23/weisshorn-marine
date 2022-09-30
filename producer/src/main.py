@@ -5,6 +5,7 @@ from data.api import fetch_data_cb_api_continuously
 from data.db import db, collection
 from data.data_model import Item, Price
 from data.items import items
+from data.utils import transform_time
 from fastapi import FastAPI, WebSocket
 
 
@@ -34,7 +35,8 @@ async def create_item(item: Item):
     """
     post = item.dict()
     print(f'Create a document \n {post["name"]}')
-    doc_ref = collection.document(post["name"])
+    document = transform_time(post['name'])
+    doc_ref = collection.document(document)
     print(f'Posted: \n \n {post}')
     doc_ref.set(post)
     print('Stored in db')

@@ -12,9 +12,9 @@ class Item(BaseModel):
 
 class Price(BaseModel):
     timestamp: str
-    amount: float
-    base: str
-    currency: str
+    amount: float = None
+    base: str = None
+    currency: str = None
     pred: float = None
     pred_up: float = None
     pred_dw: float = None
