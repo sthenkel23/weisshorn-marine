@@ -61,7 +61,6 @@ async def create_price(price: Price):
     return price
 
 
-
 @app.get("/apiv1/{name}")
 def api1(name: str):
     return {"message": f"Hello! @{name}"}
