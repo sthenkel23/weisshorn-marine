@@ -1,4 +1,0 @@
-streamlit==1.12.2
-summa
-pandas
-setuptools

@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+requests
+pydantic
+asyncio
+websockets
+
+# Required for db and data massaging
+google-cloud-firestore

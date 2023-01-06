@@ -1,6 +1,9 @@
 pylint==2.13.8
 black
+isort
 pytest
 pytest-cov
 pytest-xdist==2.5.0
 pytest-xdist[psutil]
+mypy
+types-requests

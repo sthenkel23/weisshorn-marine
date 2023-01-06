@@ -1,0 +1,1 @@
+{"buildTargets":["build-pypi","clean","clean_build","clean_docker","create-virtual","docker","download-poetry","format","install","install-poetry","lint","parallel-test","profile-test","run-app","sort","source-virtual","test","testing"],"launchTargets":[],"customConfigurationProvider":{"workspaceBrowse":{"browsePath":[],"compilerArgs":[]},"fileIndex":[]}}
